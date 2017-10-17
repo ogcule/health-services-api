@@ -1,0 +1,8 @@
+{
+  "name": "health-services-api",
+  "version": "1.0.0",
+  "description": "api for health services",
+  "main": "index.js",
+  "author": "ogcule <ogcule@outlook.com>",
+  "license": "MIT"
+}
