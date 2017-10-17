@@ -4,5 +4,28 @@
   "description": "api for health services",
   "main": "index.js",
   "author": "ogcule <ogcule@outlook.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon ./server.js --exec babel-node",
+    "lint": "eslint server.js",
+    "test": "mocha --require babel-register"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "express": "^4.16.2",
+    "pg-promise": "^7.0.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.0.1",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "chai": "^4.1.2",
+    "eslint": "^4.9.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "mocha": "^4.0.1",
+    "nodemon": "^1.12.1"
+  }
 }
