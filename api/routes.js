@@ -16,7 +16,7 @@ const routes = (app) => {
   app.get('/faq/:id', getFaq);
   app.post('/faq', urlencodedParser, createFaq);
   app.put('/faq/:id',urlencodedParser, updateFaq);
-  app.delete('/faq/:question', removeFaq);
+  app.delete('/faq/:id', removeFaq);
 
 
 }

@@ -53,13 +53,13 @@ function updateFaq(req, res, next) {
     });
 }
 function removeFaq(req, res, next) {
-  let faqQuestion = req.params.question;
-  db.result('delete from service where name = $1', faqQuestion)
+  let faqId = req.params.id;
+  db.result('delete from faq where id = $1', faqId)
     .then(function () {
       res.status(200)
         .json({
           status: 'success',
-          message: `Removed ${faqQuestion} service`
+          message: `Removed ${faqId} service`
         });
     })
     .catch(function (err) {

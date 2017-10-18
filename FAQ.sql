@@ -9,4 +9,4 @@ CREATE TABLE faq
 );
 
 INSERT INTO faq (question, answer)
-VALUES ('How to I get to the a day off?', 'You don''t just keep working' );
+VALUES ('Where to I find out about a service?', 'Hopefully with the help of this api!' );
