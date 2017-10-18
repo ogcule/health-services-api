@@ -5,9 +5,9 @@ CREATE DATABASE services;
 
 CREATE TABLE service (
   ID SERIAL PRIMARY KEY,
-  name VARCHAR,
-  category VARCHAR,
-  description VARCHAR
+  name VARCHAR NOT NULL UNIQUE ,
+  category VARCHAR NOT NULL,
+  description VARCHAR NOT NULL
 );
 
 INSERT INTO service (name, category, description)
