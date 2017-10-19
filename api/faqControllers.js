@@ -2,7 +2,7 @@ import {db} from './dbConnection';
 
 function getAllFaq(req, res, next) {
   db.any('select * from faq').then(function(data) {
-    res.status(200).json({status: 'success', data: data, message: 'Retrieved ALL faqs'});
+    res.status(200).json(data);
   }).catch(function(err) {
     return next(err);
   });
@@ -13,7 +13,7 @@ function getFaq(req, res, next) {
   var faqID = parseInt(req.params.id);
   db.one('SELECT * FROM faq WHERE id = $1', faqID)
     .then(function(data) {
-    res.status(200).json({status: 'success', data: data, message: 'Retrieved ONE faq'});
+    res.status(200).json(data);
   }).catch(function(err) {
     return next(err);
   });
@@ -26,11 +26,7 @@ function createFaq(req, res, next) {
     [newService.question, newService.answer])
     .then(function (data) {
       res.status(200)
-        .json({
-          status: 'success',
-          data: data.id,
-          message: `Inserted new faq`
-        });
+        .json(data);
     })
     .catch(function (err) {
       return next(err);
@@ -39,14 +35,11 @@ function createFaq(req, res, next) {
 
 function updateFaq(req, res, next) {
   let faq = req.body;
-  db.none('update faq set question=$1, answer=$2 where id=$3',
+  db.one('update faq set question=$1, answer=$2 where id=$3 RETURNING id',
     [faq.question, faq.answer, parseInt(req.params.id)])
-    .then(function () {
+    .then(function (data) {
       res.status(200)
-        .json({
-          status: 'success',
-          message: `Updated service`
-        });
+        .json(data.id);
     })
     .catch(function (err) {
       return next(err);
@@ -54,13 +47,10 @@ function updateFaq(req, res, next) {
 }
 function removeFaq(req, res, next) {
   let faqId = req.params.id;
-  db.result('delete from faq where id = $1', faqId)
-    .then(function () {
+  db.result('delete from faq where id = $1' , faqId, r => r.fields)
+    .then(function (data) {
       res.status(200)
-        .json({
-          status: 'success',
-          message: `Removed ${faqId} service`
-        });
+        .json(data);
     })
     .catch(function (err) {
       return next(err);
