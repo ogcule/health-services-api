@@ -19,7 +19,6 @@ const routes = (app) => {
   ],(req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    console.log(errors.mapped().answer.msg);
     return res.status(422).json({ error: errors.mapped() });
   }
   next();

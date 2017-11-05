@@ -2,7 +2,7 @@ import {db} from './dbConnection';
 
 function getAllServices(req, res, next) {
   db.any('select * from service').then(function(data) {
-    res.status(200).json({status: 'success', data: data, message: 'Retrieved ALL services'});
+    res.status(200).json(data);
   }).catch(function(err) {
     return next(err);
   });
@@ -13,7 +13,7 @@ function getSingleService(req, res, next) {
   var serviceID = parseInt(req.params.id);
   db.one('SELECT * FROM service WHERE id = $1', serviceID)
     .then(function(data) {
-    res.status(200).json({status: 'success', data: data, message: 'Retrieved ONE service'});
+    res.status(200).json(data);
   }).catch(function(err) {
     return next(err);
   });
