@@ -22,8 +22,8 @@ function getSingleService(req, res, next) {
 function createService(req, res, next) {
   let newService = req.body;
   // use db.none if no returning data or use db.one if using returning data
-  db.one('INSERT INTO service(name, category, description, image, link, email, telephone, address, rcgp) values($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id',
-    [newService.name, newService.category, newService.description, newService.image, newService.weblink, newService.email, parseInt(newService.telephone,10), newService.address, newService.rcgpCategory])
+  db.one('INSERT INTO service(name, category, description, image, link, email, telephone, address, rcgp, postcode) values($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id',
+    [newService.name, newService.category, newService.description, newService.image, newService.weblink, newService.email, parseInt(newService.telephone,10), newService.address, newService.rcgpCategory, newService.postcode])
     .then(function (data) {
       res.status(200)
         .json(data.id);
