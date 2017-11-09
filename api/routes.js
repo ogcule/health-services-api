@@ -11,8 +11,8 @@ const routes = (app) => {
     check('name', 'Please enter a name for the service').isLength({ min: 1 }),
     check('description','Please enter a description').isLength({ min: 1 }),
     check('address', 'Please enter an address').isLength({ min: 1 }),
-    check('email').isEmail().withMessage('Must be an email').trim().normalizeEmail(),
-    check('telephone').isInt().withMessage('Please provide telephone number').toInt(),
+    check('email').isEmail().withMessage('Must be a valid email address').trim().normalizeEmail(),
+    check('telephone').matches(/^\+?(?:\d\s?){10,12}$/).withMessage('Please provide a valid telephone number'),
     check('postcode').matches(/^[a-zA-Z]{1,2}([0-9]{1,2}|[0-9][a-zA-Z])\s*[0-9][a-zA-Z]{2}$/).withMessage('Please provide a postcode'),
     check('weblink','Use correct URL').isURL(),
     check('image', 'Use correct URL').isURL()
